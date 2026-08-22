@@ -19,11 +19,11 @@ from services.config.workout_config import POSE_CONNECTIONS
 class VideoProcessorClass(VideoProcessorBase):
     def __init__(self):
         self._lock = threading.Lock()
-        self._latest_matrics = None
+        self._latest_metrics = None
         self._exercise_type = "Squats"
 
-        model_path = os.path.join(os.getcwd(),"ml_models","pose_landmarker_full.task")
-        base_option = python.BaseOptions(model_asset_path = model_path)
+        model_path = os.path.join(os.getcwd(), "ml_models", "pose_landmarker_full.task")
+        base_option = python.BaseOptions(model_asset_path=model_path)
 
         options = vision.PoseLandmarkerOptions(
             base_options=base_option,
@@ -45,7 +45,7 @@ class VideoProcessorClass(VideoProcessorBase):
         }
 
         self._frame_timestamps_ms = 0
-
+    
     def set_latest_metrics(self, metrics):
         with self._lock:
             self._latest_metrics = metrics.copy()
@@ -61,7 +61,7 @@ class VideoProcessorClass(VideoProcessorBase):
     def get_exercise(self):
         with self._lock:
             return self._exercise_type
-
+        
     def _draw_skeleton(self, img, landmarks):
         h, w = img.shape[:2]
 
@@ -230,3 +230,4 @@ class VideoProcessorClass(VideoProcessorBase):
                     self._latest_metrics = {"pose_detected": False}
 
         return av.VideoFrame.from_ndarray(image, format="bgr24")
+    
