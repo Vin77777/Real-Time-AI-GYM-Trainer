@@ -18,3 +18,6 @@ Main App/data.db
 
 # Logs
 *.log
+
+# Streamlit secrets
+.streamlit/secrets.toml
