@@ -243,7 +243,6 @@ def main():
                 "Sets",
                 min_value=1,
                 max_value=50,
-                value=3,
                 step=1,
                 key="plan_sets",
             )
@@ -252,7 +251,6 @@ def main():
                 "Reps per Set",
                 min_value=1,
                 max_value=50,
-                value=10,
                 step=1,
                 key="plan_reps",
             )
