@@ -674,10 +674,8 @@ def main():
         # ----------------------------------------------------
         # KEEP STREAMLIT UPDATING
         # ----------------------------------------------------
-
         if context and context.state.playing:
-
-            time.sleep(0.25)
+             time.sleep(0.25)
 
         
 
