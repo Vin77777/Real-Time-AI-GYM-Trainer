@@ -7,7 +7,6 @@ import streamlit as st
 from dotenv import load_dotenv
 from groq import Groq
 from streamlit_webrtc import webrtc_streamer, WebRtcMode
-from streamlit_webrtc.credentials import get_available_ice_servers
 
 from services.auth.login_wall import render_login_wall
 from services.state.session_defaults import initial_session_defaults
@@ -648,18 +647,16 @@ def main():
             mode=WebRtcMode.SENDRECV,
             video_processor_factory=VideoProcessorClass,
 
-            # rtc_configuration={
-            #     "iceServers": [
-            #         {
-            #             "urls": [
-            #                 "stun:stun.l.google.com:19302"
-            #             ]
-            #         }
-            #     ]
-            # },
-            rtc_configuration = {
-                       "iceServers": get_available_ice_servers()
-                     },
+            rtc_configuration={
+                "iceServers": [
+                    {
+                        "urls": [
+                            "stun:stun.l.google.com:19302"
+                        ]
+                    }
+                ]
+            },
+
             media_stream_constraints={
                 "video": True,
                 "audio": False,
